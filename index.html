@@ -3,758 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Di Antara Dedaunan | Modern Classic Gold</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f343.svg" type="image/svg+xml">
-    
+    <title>Di Antara Dedaunan</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f343.svg">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+        
         :root {
-            --gold: #d4af37;
+            --gold: #c9a227;
             --gold-light: #e8d5a3;
-            --gold-dark: #b8941f;
-            --champagne: #f7f3e8;
-            --ivory: #fffef5;
+            --gold-dark: #a08220;
+            --cream: #faf8f3;
+            --champagne: #f5f1e8;
             --charcoal: #2c2c2c;
             --charcoal-light: #3d3d3d;
-            --warm-gray: #8a8279;
-            --cream: #faf8f3;
-            --bronze: #cd7f32;
-            --shadow-gold: rgba(212, 175, 55, 0.15);
+            --warm-gray: #7a7269;
+            --ivory: #fffef5;
         }
-
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Cormorant Garamond', serif;
             background: var(--cream);
             color: var(--charcoal);
-            line-height: 1.8;
+            line-height: 1.9;
             font-size: 1.15rem;
-            overflow-x: hidden;
         }
-
-        /* KEYFRAMES */
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
-        @keyframes drift {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -40px) rotate(90deg); }
-            50% { transform: translate(-20px, -80px) rotate(180deg); }
-            75% { transform: translate(40px, -40px) rotate(270deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-
+        
+        /* Subtle Animations */
         @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        @keyframes gentlePulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        @keyframes floatUp {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes popIn {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        @keyframes fadeOut {
-            0% { opacity: 1; transform: scale(0) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
-            100% { opacity: 0; transform: scale(0) rotate(360deg); }
-        }
-
-        /* BACKGROUND */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.4;
-            background-image: 
-                radial-gradient(circle at 20% 80%, var(--shadow-gold) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, var(--shadow-gold) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(205, 127, 50, 0.05) 0%, transparent 30%);
-        }
-
-        .gold-dust {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-            animation: float 15s infinite;
-            box-shadow: 0 0 10px var(--gold);
-        }
-
-        /* MENU */
-        .menu-container {
-            position: fixed;
-            top: 40px;
-            right: 40px;
-            z-index: 1000;
-        }
-
-        .hamburger {
-            width: 45px;
-            height: 35px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-            z-index: 1001;
-            position: relative;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
-            border-radius: 2px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-            background: var(--gold);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(10px, -10px);
-            background: var(--gold);
-        }
-
-        .menu-dropdown {
-            position: absolute;
-            top: 60px;
-            right: 0;
-            background: rgba(255, 254, 245, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.15),
-                0 0 0 1px rgba(212, 175, 55, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            min-width: 240px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .menu-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: var(--charcoal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 3px;
-            background: linear-gradient(180deg, var(--gold), var(--bronze));
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .menu-item:hover {
-            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
-            color: var(--gold-dark);
-            transform: translateX(5px);
-        }
-
-        .menu-item:hover::before {
-            transform: scaleY(1);
-        }
-
-        .menu-item-icon {
-            font-size: 1.4rem;
-            filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
-        }
-
-        /* MODAL GALLERY */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(44, 44, 44, 0.85);
-            backdrop-filter: blur(15px);
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, var(--ivory), var(--champagne));
-            border-radius: 30px;
-            max-width: 1000px;
-            width: 100%;
-            max-height: 90vh;
-            overflow: hidden;
-            position: relative;
-            transform: scale(0.9) translateY(50px);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 
-                0 40px 100px rgba(0,0,0,0.3),
-                0 0 0 1px rgba(212, 175, 55, 0.3),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal-header {
-            padding: 40px;
-            background: linear-gradient(135deg, var(--charcoal), var(--charcoal-light));
-            color: var(--gold-light);
-            position: relative;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal-subtitle {
-            opacity: 0.8;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--warm-gray);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            background: rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--gold);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: var(--gold);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .modal-close:hover {
-            background: var(--gold);
-            color: var(--charcoal);
-            transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .modal-body {
-            padding: 40px;
-            overflow-y: auto;
-            max-height: calc(90vh - 140px);
-        }
-
-        /* TABS */
-        .gallery-tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .gallery-tabs::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .gallery-tab {
-            flex: 1;
-            padding: 18px 25px;
-            background: transparent;
-            border: none;
-            border-bottom: 3px solid transparent;
-            border-radius: 15px 15px 0 0;
-            cursor: pointer;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--warm-gray);
-            transition: all 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-tab:hover {
-            color: var(--gold-dark);
-            transform: translateY(-2px);
-        }
-
-        .gallery-tab:hover::before {
-            opacity: 1;
-        }
-
-        .gallery-tab.active {
-            color: var(--charcoal);
-            border-bottom-color: var(--gold);
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.15), transparent);
-            font-weight: 600;
-        }
-
-        .gallery-tab.active::after {
-            content: '✦';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--gold);
-            font-size: 0.8rem;
-        }
-
-        .tab-icon {
-            font-size: 1.4rem;
-            filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
-        }
-
-        /* GALLERY PANELS */
-        .gallery-panel {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .gallery-panel.active {
-            display: block;
-        }
-
-        /* SCROLL CONTAINER */
-        .scroll-container {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 25px 15px;
-            background: transparent;
-            scrollbar-width: thin;
-            scrollbar-color: var(--gold) transparent;
-            scroll-behavior: smooth;
-        }
-
-        .scroll-container::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .scroll-container::-webkit-scrollbar-track {
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 3px;
-        }
-
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
-            border-radius: 3px;
-        }
-
-        /* GALLERY ITEMS */
-        .gallery-item-landscape {
-            flex: 0 0 auto;
-            width: 340px;
-            height: 240px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            background: var(--ivory);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            box-shadow: 
-                0 10px 40px rgba(0,0,0,0.1),
-                0 0 0 1px rgba(212, 175, 55, 0.2),
-                inset 0 0 20px rgba(212, 175, 55, 0.05);
-            border: 8px solid var(--ivory);
-        }
-
-        .gallery-item-portrait {
-            flex: 0 0 auto;
-            width: 240px;
-            height: 340px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            background: var(--ivory);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            box-shadow: 
-                0 10px 40px rgba(0,0,0,0.1),
-                0 0 0 1px rgba(212, 175, 55, 0.2),
-                inset 0 0 20px rgba(212, 175, 55, 0.05);
-            border: 8px solid var(--ivory);
-        }
-
-        .gallery-item-landscape:hover,
-        .gallery-item-portrait:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 
-                0 25px 60px rgba(0,0,0,0.2),
-                0 0 0 2px var(--gold),
-                0 0 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .gallery-item-landscape img,
-        .gallery-item-portrait img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.6s ease;
-            filter: saturate(0.9) contrast(1.05);
-        }
-
-        .gallery-item-landscape:hover img,
-        .gallery-item-portrait:hover img {
-            transform: scale(1.15);
-            filter: saturate(1.1) contrast(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(44,44,44,0.9), transparent);
-            color: var(--gold-light);
-            padding: 40px 20px 20px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.4s ease;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .gallery-item-landscape:hover .gallery-caption,
-        .gallery-item-portrait:hover .gallery-caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* PLACEHOLDER */
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--champagne), var(--cream));
-            color: var(--warm-gray);
-            font-family: 'Cormorant Garamond', serif;
-            text-align: center;
-            padding: 30px;
-            border: 2px dashed var(--gold);
-            border-radius: 15px;
-        }
-
-        .gallery-placeholder-icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-
-        .gallery-placeholder-text {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        /* SCROLL HINT */
-        .scroll-hint {
-            text-align: center;
-            margin-top: 20px;
-            color: var(--warm-gray);
-            font-size: 0.95rem;
-            opacity: 0.7;
-            font-style: italic;
-            letter-spacing: 2px;
-        }
-
-        .scroll-hint::before,
-        .scroll-hint::after {
-            content: '✦';
-            margin: 0 10px;
-            color: var(--gold);
-            font-size: 0.7rem;
-        }
-
-        /* EMPTY STATE */
-        .empty-gallery {
-            text-align: center;
-            padding: 80px 40px;
-            color: var(--warm-gray);
-            background: rgba(212, 175, 55, 0.05);
-            border-radius: 20px;
-            border: 2px dashed rgba(212, 175, 55, 0.3);
-        }
-
-        .empty-gallery-icon {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            opacity: 0.4;
-        }
-
-        /* LIGHTBOX */
-        .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(20, 20, 20, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 3000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 60px;
-        }
-
-        .lightbox-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-container {
-            position: relative;
-            max-width: 85vw;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform: scale(0.8);
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .lightbox-overlay.active .lightbox-container {
-            transform: scale(1);
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 15px;
-            box-shadow: 
-                0 30px 80px rgba(0,0,0,0.5),
-                0 0 0 3px rgba(212, 175, 55, 0.3);
-            filter: saturate(1.1) contrast(1.05);
-        }
-
-        .lightbox-caption {
-            color: var(--gold-light);
-            margin-top: 30px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease 0.2s;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            letter-spacing: 1px;
-        }
-
-        .lightbox-overlay.active .lightbox-caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -60px;
-            right: 0;
-            background: rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--gold);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            color: var(--gold);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 3001;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .lightbox-close:hover {
-            background: var(--gold);
-            color: var(--charcoal);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.15);
-            border: 2px solid var(--gold);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            color: var(--gold);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .lightbox-overlay:hover .lightbox-nav {
-            opacity: 1;
-        }
-
-        .lightbox-nav:hover {
-            background: var(--gold);
-            color: var(--charcoal);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-        }
-
-        .lightbox-prev {
-            left: -100px;
-        }
-
-        .lightbox-next {
-            right: -100px;
-        }
-
-        @media (max-width: 768px) {
-            .lightbox-prev { left: 20px; }
-            .lightbox-next { right: 20px; }
-            .lightbox-nav { 
-                opacity: 1; 
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-        }
-
-        /* HEADER */
+        
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(40px, -30px) rotate(360deg); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -100% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        /* Header - Classic & Refined */
         .header {
             min-height: 100vh;
             display: flex;
@@ -762,947 +59,831 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 60px 20px;
-            position: relative;
+            padding: 60px 30px;
             background: linear-gradient(180deg, var(--cream) 0%, var(--champagne) 100%);
+            position: relative;
             overflow: hidden;
         }
-
+        
         .header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: 
-                radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 70% 80%, rgba(205, 127, 50, 0.08) 0%, transparent 40%);
+                radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.05) 0%, transparent 40%);
             pointer-events: none;
         }
-
-        .floating-element {
+        
+        .floating {
             position: absolute;
-            font-size: 2.5rem;
-            opacity: 0.1;
-            animation: drift 25s infinite linear;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            font-size: 2rem;
+            opacity: 0.08;
+            animation: drift 30s infinite linear;
         }
-
-        .element-1 { top: 15%; left: 10%; animation-delay: 0s; }
-        .element-2 { top: 25%; right: 15%; animation-delay: -8s; }
-        .element-3 { bottom: 35%; left: 20%; animation-delay: -16s; }
-        .element-4 { bottom: 25%; right: 10%; animation-delay: -5s; }
-
+        
+        .floating:nth-child(1) { top: 15%; left: 10%; }
+        .floating:nth-child(2) { top: 25%; right: 15%; animation-delay: -10s; }
+        .floating:nth-child(3) { bottom: 35%; left: 20%; animation-delay: -20s; }
+        
         .icon-main {
-            font-size: 5rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
+            font-size: 4rem;
+            margin-bottom: 35px;
             animation: gentleFloat 6s ease-in-out infinite;
-            filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.4));
-            background: linear-gradient(135deg, var(--gold), var(--bronze));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            filter: drop-shadow(0 8px 20px rgba(201, 162, 39, 0.3));
+            opacity: 0.9;
         }
-
+        
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 3.2rem;
             font-weight: 500;
-            color: var(--charcoal);
+            letter-spacing: 4px;
             margin-bottom: 25px;
-            letter-spacing: 3px;
+            color: var(--charcoal);
             position: relative;
-            display: inline-block;
         }
-
+        
         h1::after {
             content: '';
             position: absolute;
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
+            width: 80px;
+            height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            border-radius: 2px;
         }
-
+        
         .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--warm-gray);
             font-style: italic;
-            max-width: 600px;
-            line-height: 1.9;
+            max-width: 550px;
             margin-top: 30px;
             font-weight: 400;
+            letter-spacing: 0.5px;
         }
-
-        .scroll-indicator {
+        
+        .scroll-hint {
             position: absolute;
             bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
             color: var(--gold);
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.7;
-            animation: bounce 2s infinite;
+            font-size: 1.3rem;
+            animation: gentleFloat 2s ease-in-out infinite;
+            opacity: 0.6;
         }
-
-        /* SECTIONS */
+        
+        /* Sections */
         .section {
             max-width: 800px;
             margin: 0 auto;
             padding: 100px 40px;
-            position: relative;
         }
-
+        
         .section-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             margin: 0 auto 80px;
-            width: 200px;
-            opacity: 0.5;
+            width: 150px;
+            opacity: 0.4;
         }
-
+        
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--charcoal);
+            font-size: 2rem;
             text-align: center;
             margin-bottom: 60px;
-            position: relative;
             font-weight: 500;
             letter-spacing: 2px;
+            color: var(--charcoal);
         }
-
+        
         .section-title::before,
         .section-title::after {
             content: '❧';
-            margin: 0 20px;
             color: var(--gold);
-            font-size: 1.2rem;
-            vertical-align: middle;
-            opacity: 0.8;
+            margin: 0 20px;
+            font-size: 1rem;
+            opacity: 0.6;
         }
-
-        /* POEM */
+        
+        /* Poem - Classic Typography */
         .poem {
-            font-size: 1.25rem;
-            line-height: 2.4;
-            color: var(--charcoal);
-            text-align: center;
-            margin: 50px 0;
+            font-size: 1.3rem;
             font-style: italic;
-            position: relative;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.03), transparent);
             border-radius: 20px;
-            border-left: 4px solid var(--gold);
-            border-right: 4px solid var(--gold);
+            border-left: 3px solid var(--gold);
+            border-right: 3px solid var(--gold);
+            line-height: 2.4;
+            position: relative;
         }
-
+        
         .poem::before,
         .poem::after {
             content: '"';
             font-family: 'Playfair Display', serif;
             font-size: 4rem;
             color: var(--gold);
-            opacity: 0.3;
+            opacity: 0.2;
             position: absolute;
             line-height: 1;
         }
-
-        .poem::before {
-            top: 10px;
-            left: 20px;
-        }
-
-        .poem::after {
-            content: '"';
-            bottom: -20px;
-            right: 20px;
-        }
-
-        .poem-stanza {
-            margin-bottom: 35px;
-        }
-
-        .poem-line {
-            margin: 12px 0;
-            letter-spacing: 0.5px;
-        }
-
-        /* ICON BLOCKS */
-        .icon-block {
+        
+        .poem::before { top: 20px; left: 25px; }
+        .poem::after { content: '"'; bottom: -10px; right: 25px; }
+        
+        .poem-stanza { margin-bottom: 35px; }
+        .poem-line { margin: 12px 0; }
+        
+        /* Icon Blocks - Refined */
+        .block {
             display: flex;
-            align-items: flex-start;
             gap: 30px;
-            margin: 50px 0;
+            margin: 45px 0;
             padding: 40px;
-            background: linear-gradient(135deg, var(--ivory), var(--cream));
-            border-radius: 25px;
-            border-left: 5px solid var(--gold);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 
-                0 10px 40px rgba(0,0,0,0.06),
-                0 0 0 1px rgba(212, 175, 55, 0.1);
-            position: relative;
-            overflow: hidden;
+            background: var(--ivory);
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04);
         }
-
-        .icon-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
-            border-radius: 50%;
-            transform: translate(50%, -50%);
+        
+        .block:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-left-width: 6px;
         }
-
-        .icon-block:hover {
-            transform: translateX(10px) translateY(-5px);
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.1),
-                0 0 0 2px rgba(212, 175, 55, 0.3),
-                0 0 30px rgba(212, 175, 55, 0.1);
-        }
-
+        
         .block-icon {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
+            opacity: 0.85;
             flex-shrink: 0;
-            opacity: 0.9;
-            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
-            z-index: 1;
         }
-
-        .block-content {
-            flex: 1;
-            z-index: 1;
-        }
-
+        
         .block-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--charcoal);
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 500;
             letter-spacing: 0.5px;
         }
-
+        
         .block-text {
             color: var(--warm-gray);
             font-size: 1.1rem;
             line-height: 2;
         }
-
-        /* DIALOGUE */
-        .dialogue-section {
-            margin: 80px 0;
+        
+        /* Dialogue - Elegant Chat Bubbles */
+        .dialogue {
+            margin: 70px 0;
             position: relative;
         }
-
-        .dialogue-section::before {
+        
+        .dialogue::before {
             content: '';
             position: absolute;
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, transparent, var(--gold), var(--bronze), transparent);
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--gold), transparent);
             transform: translateX(-50%);
             opacity: 0.3;
         }
-
+        
         .voice {
-            margin: 40px 0;
+            max-width: 78%;
             padding: 35px 40px;
-            border-radius: 25px;
+            border-radius: 20px;
+            margin: 35px 0;
             position: relative;
-            max-width: 80%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
-
-        .voice:hover {
-            transform: scale(1.02);
-        }
-
+        
+        .voice:hover { transform: scale(1.02); }
+        
         .voice-one {
-            background: linear-gradient(135deg, var(--ivory), var(--cream));
+            background: var(--ivory);
             margin-left: auto;
             border-bottom-right-radius: 5px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
-
+        
         .voice-two {
-            background: linear-gradient(135deg, var(--charcoal), var(--charcoal-light));
+            background: var(--charcoal);
             color: var(--gold-light);
             margin-right: auto;
             border-bottom-left-radius: 5px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
-
-        .voice-icon {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            opacity: 0.8;
-            filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
-        }
-
-        .voice-two .voice-icon {
-            opacity: 0.9;
-            color: var(--gold);
-        }
-
+        
         .voice-text {
             font-size: 1.15rem;
             line-height: 2;
             font-style: italic;
-            letter-spacing: 0.3px;
         }
-
+        
         .voice-two .voice-text {
             font-style: normal;
             color: var(--champagne);
         }
-
-        /* MOMENTS */
-        .moments-gallery {
-            margin: 80px 0;
-        }
-
-        .moment-card {
-            background: linear-gradient(135deg, var(--ivory), var(--cream));
-            border-radius: 30px;
-            padding: 50px;
-            margin: 40px 0;
-            box-shadow: 
-                0 15px 50px rgba(0,0,0,0.08),
-                0 0 0 1px rgba(212, 175, 55, 0.15);
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            overflow: hidden;
-        }
-
-        .moment-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--gold), var(--bronze), var(--gold));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .moment-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 
-                0 30px 70px rgba(0,0,0,0.12),
-                0 0 0 2px rgba(212, 175, 55, 0.3),
-                0 0 40px rgba(212, 175, 55, 0.15);
-        }
-
-        .moment-card:hover::before {
-            opacity: 1;
-        }
-
-        .moment-time {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.85rem;
-            color: var(--gold-dark);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .moment-icon {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            opacity: 0.9;
-            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
-        }
-
-        .moment-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: var(--charcoal);
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .moment-desc {
-            color: var(--warm-gray);
-            font-size: 1.15rem;
-            line-height: 2;
-            font-style: italic;
-        }
-
-        .moment-feeling {
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            font-size: 1rem;
-            color: var(--charcoal);
-            font-style: italic;
-            position: relative;
-        }
-
-        .moment-feeling::before {
-            content: '—';
-            color: var(--gold);
-            margin-right: 10px;
-        }
-
-        /* RITUAL */
-        .ritual-section {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(205, 127, 50, 0.05));
-            border-radius: 40px;
-            padding: 60px 50px;
-            margin: 80px 0;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-        }
-
-        .ritual-section::before {
-            content: '✦';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--gold);
-            font-size: 1.5rem;
-            opacity: 0.5;
-        }
-
-        .ritual-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .ritual-item {
-            background: var(--ivory);
-            padding: 35px 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            border: 2px solid transparent;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ritual-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 0;
-            background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.1));
-            transition: height 0.3s ease;
-        }
-
-        .ritual-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--gold);
-            box-shadow: 
-                0 15px 40px rgba(0,0,0,0.1),
-                0 0 20px rgba(212, 175, 55, 0.2);
-        }
-
-        .ritual-item:hover::after {
-            height: 100%;
-        }
-
-        .ritual-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
-        }
-
-        .ritual-item:hover .ritual-icon {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .ritual-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--charcoal);
-            margin-bottom: 10px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .ritual-desc {
-            font-size: 0.95rem;
-            color: var(--warm-gray);
-            line-height: 1.7;
-        }
-
-        .ritual-active {
-            background: linear-gradient(135deg, var(--charcoal), var(--charcoal-light));
-            color: var(--gold-light);
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .ritual-active .ritual-name {
-            color: var(--gold);
-        }
-
-        .ritual-active .ritual-desc {
-            color: var(--champagne);
-        }
-
-        /* BOTTLES */
-        .bottles-section {
-            margin: 80px 0;
-        }
-
-        .bottle-container {
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            margin-top: 50px;
-        }
-
+        
+        /* Bottles - Classic with Subtle Animation */
         .bottle {
-            background: linear-gradient(135deg, var(--ivory), var(--cream));
-            border-radius: 25px;
+            background: var(--ivory);
+            border-radius: 20px;
             padding: 40px;
-            position: relative;
+            margin: 30px 0;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 2px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
-
+        
         .bottle::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 4px;
             height: 100%;
-            background: linear-gradient(180deg, var(--gold), var(--bronze));
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
             transform: scaleY(0);
             transition: transform 0.4s ease;
         }
-
+        
         .bottle:hover {
-            transform: translateX(15px);
+            border-color: rgba(201, 162, 39, 0.3);
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .bottle:hover::before { transform: scaleY(1); }
+        
+        .bottle.open {
             border-color: var(--gold);
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.1),
-                0 0 30px rgba(212, 175, 55, 0.15);
+            background: linear-gradient(135deg, var(--ivory), var(--champagne));
         }
-
-        .bottle:hover::before {
-            transform: scaleY(1);
-        }
-
-        .bottle.opened {
-            background: linear-gradient(135deg, var(--cream), var(--ivory));
-            border-color: var(--gold);
-            box-shadow: 
-                0 15px 50px rgba(0,0,0,0.1),
-                inset 0 0 30px rgba(212, 175, 55, 0.05);
-        }
-
-        .bottle.opened::before {
-            transform: scaleY(1);
-        }
-
+        
+        .bottle.open::before { transform: scaleY(1); }
+        
         .bottle-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             display: inline-block;
+            transition: transform 0.5s ease;
         }
-
-        .bottle.opened .bottle-icon {
-            transform: rotate(15deg) scale(1.1);
-            filter: drop-shadow(0 6px 12px rgba(212, 175, 55, 0.5));
-        }
-
+        
+        .bottle.open .bottle-icon { transform: rotate(15deg); }
+        
         .bottle-label {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--charcoal);
-            margin-bottom: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
-
+        
         .bottle-preview {
-            font-size: 1.1rem;
             color: var(--warm-gray);
             font-style: italic;
-            position: relative;
-            padding-left: 20px;
+            font-size: 1.05rem;
         }
-
-        .bottle-preview::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--gold);
-        }
-
+        
         .bottle-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.4s;
-            font-size: 1.15rem;
+            transition: all 0.5s ease;
+            font-size: 1.1rem;
             line-height: 2;
-            color: var(--charcoal);
+            opacity: 0;
         }
-
-        .bottle.opened .bottle-content {
-            max-height: 600px;
-            padding-top: 30px;
-            margin-top: 25px;
-            border-top: 2px solid rgba(212, 175, 55, 0.3);
+        
+        .bottle.open .bottle-content {
+            max-height: 300px;
+            padding-top: 25px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(201, 162, 39, 0.3);
+            opacity: 1;
         }
-
-        /* SECRET BOX */
+        
+        /* Secret Box - Classic Stationery Style */
         .secret-box {
-            background: linear-gradient(135deg, var(--ivory), var(--cream));
-            border-radius: 30px;
+            background: var(--ivory);
+            border-radius: 25px;
             padding: 50px;
             margin: 60px 0;
-            box-shadow: 
-                0 15px 50px rgba(0,0,0,0.08),
-                0 0 0 2px dashed rgba(212, 175, 55, 0.4);
             text-align: center;
+            border: 1px dashed var(--gold);
             position: relative;
-            overflow: hidden;
         }
-
+        
         .secret-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent 70%);
-            pointer-events: none;
-        }
-
-        .secret-input {
-            width: 100%;
-            padding: 25px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            margin: 25px 0;
-            resize: vertical;
-            min-height: 150px;
-            background: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-            color: var(--charcoal);
-        }
-
-        .secret-input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            background: white;
-        }
-
-        .secret-input::placeholder {
-            color: var(--warm-gray);
-            font-style: italic;
-        }
-
-        /* QUIET CORNER */
-        .quiet-corner {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(205, 127, 50, 0.05));
-            padding: 80px 60px;
-            border-radius: 40px;
-            margin: 80px 0;
-            text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quiet-corner::before,
-        .quiet-corner::after {
-            content: '❧';
-            position: absolute;
-            color: var(--gold);
-            font-size: 2rem;
-            opacity: 0.3;
-        }
-
-        .quiet-corner::before {
-            top: 30px;
-            left: 30px;
-        }
-
-        .quiet-corner::after {
-            bottom: 30px;
-            right: 30px;
-            transform: rotate(180deg);
-        }
-
-        .quiet-icon {
-            font-size: 4rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            filter: drop-shadow(0 6px 12px rgba(212, 175, 55, 0.4));
-            animation: gentlePulse 3s infinite;
-        }
-
-        .quiet-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: var(--charcoal);
-            line-height: 2;
-            font-style: italic;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 100px 40px;
-            background: linear-gradient(180deg, var(--cream), var(--champagne));
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark), var(--gold));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-
-        .closing-icon {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            animation: heartbeat 2s infinite;
-            filter: drop-shadow(0 6px 12px rgba(212, 175, 55, 0.4));
+        
+        .secret-box:hover::before { opacity: 1; }
+        
+        textarea {
+            width: 100%;
+            padding: 25px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 15px;
+            font-family: inherit;
+            font-size: 1.15rem;
+            margin: 25px 0;
+            min-height: 140px;
+            resize: vertical;
+            background: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
         }
-
-        .closing-words {
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.1);
+        }
+        
+        button {
+            background: var(--gold);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(201, 162, 39, 0.3);
+        }
+        
+        /* Quiet Corner - Elegant Frame */
+        .quiet {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.05), transparent);
+            padding: 70px 50px;
+            border-radius: 30px;
+            text-align: center;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            position: relative;
+        }
+        
+        .quiet::before,
+        .quiet::after {
+            content: '◆';
+            position: absolute;
+            color: var(--gold);
+            font-size: 1.2rem;
+            opacity: 0.4;
+        }
+        
+        .quiet::before { top: 25px; left: 25px; }
+        .quiet::after { bottom: 25px; right: 25px; }
+        
+        .quiet-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .quiet-text {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             font-style: italic;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 2;
-            color: var(--charcoal);
+            line-height: 2.2;
             letter-spacing: 0.5px;
         }
-
-        .footer-decoration {
-            color: var(--gold);
-            font-size: 1.2rem;
-            letter-spacing: 10px;
-            margin-bottom: 20px;
-            opacity: 0.6;
+        
+        /* Footer - Classic Closure */
+        footer {
+            text-align: center;
+            padding: 100px 40px;
+            background: linear-gradient(180deg, var(--cream), var(--champagne));
+            position: relative;
         }
-
-        /* ANIMATIONS */
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.4;
+        }
+        
+        .closing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+        
+        .closing-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 35px;
+            line-height: 2;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-line {
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 3px;
+            opacity: 0.5;
+        }
+        
+        /* Menu - Minimal & Elegant */
+        .menu-btn {
+            position: fixed;
+            top: 35px;
+            right: 35px;
+            width: 50px;
+            height: 50px;
+            background: var(--ivory);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            z-index: 100;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.2);
+        }
+        
+        .menu-btn span {
+            width: 20px;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-btn.active span:nth-child(2) { opacity: 0; }
+        .menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        
+        .menu-dropdown {
+            position: fixed;
+            top: 95px;
+            right: 35px;
+            background: rgba(255, 254, 245, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px);
+            transition: all 0.3s ease;
+            z-index: 99;
+            min-width: 200px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+        
+        .menu-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .menu-item {
+            padding: 14px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .menu-item:hover {
+            background: rgba(201, 162, 39, 0.1);
+            color: var(--gold-dark);
+        }
+        
+        /* Gallery - Sophisticated Grid */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 44, 44, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: var(--ivory);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 85vh;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content { transform: scale(1); }
+        
+        .modal-header {
+            padding: 30px;
+            background: var(--charcoal);
+            color: var(--gold-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+        
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: #e8e4dc;
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s;
+            filter: sepia(20%) saturate(0.9);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: sepia(0%) saturate(1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(44,44,44,0.8), transparent);
+            color: var(--gold-light);
+            padding: 25px 15px 15px;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Lightbox - Clean & Focused */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 20, 20, 0.95);
+            z-index: 300;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .lightbox img {
+            max-width: 85%;
+            max-height: 75vh;
+            border-radius: 10px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.active img { transform: scale(1); }
+        
+        .lightbox-caption {
+            color: var(--gold-light);
+            margin-top: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            opacity: 0;
+            transition: opacity 0.3s 0.1s;
+        }
+        
+        .lightbox.active .lightbox-caption { opacity: 1; }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            color: var(--gold);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(201, 162, 39, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* Fade Animation */
         .fade-up {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.8s ease;
         }
-
+        
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* BUTTON */
-        button, .ritual-item {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--charcoal);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-            letter-spacing: 1px;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before, .ritual-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s ease;
-        }
-
-        button:hover, .ritual-item:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
-        }
-
-        button:hover::before, .ritual-item:hover::before {
-            left: 100%;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .menu-container { top: 20px; right: 20px; }
-            .gallery-item-landscape { width: 300px; height: 210px; }
-            .gallery-item-portrait { width: 210px; height: 300px; }
-            .section { padding: 60px 25px; }
-            .ritual-grid { grid-template-columns: 1fr; }
-            .voice { max-width: 95%; padding: 25px; }
-            .moment-card { padding: 30px; }
-            .secret-box { padding: 30px; }
-            .quiet-corner { padding: 50px 30px; }
-        }
-
-        /* SELECTION */
+        
+        /* Selection */
         ::selection {
             background: var(--gold);
-            color: var(--charcoal);
+            color: white;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; letter-spacing: 2px; }
+            .section { padding: 70px 25px; }
+            .poem { padding: 35px 25px; font-size: 1.15rem; }
+            .block { flex-direction: column; gap: 20px; padding: 30px; }
+            .voice { max-width: 90%; padding: 25px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
+            .menu-btn { top: 20px; right: 20px; }
+            .menu-dropdown { right: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background -->
-    <div class="bg-pattern"></div>
-    <div id="goldDustContainer"></div>
-
     <!-- Menu -->
-    <div class="menu-container">
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="menu-dropdown" id="menuDropdown">
-            <div class="menu-item" onclick="openGallery()">
-                <span class="menu-item-icon">🖼️</span>
-                <span>Gallery</span>
-            </div>
-            <div class="menu-item" onclick="scrollToSection('bottles')">
-                <span class="menu-item-icon">🍶</span>
-                <span>Pesan Botol</span>
-            </div>
-            <div class="menu-item" onclick="scrollToSection('quiet')">
-                <span class="menu-item-icon">🕊️</span>
-                <span>Sudut Tenang</span>
-            </div>
-        </div>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="menu-dropdown" id="menuDropdown">
+        <div class="menu-item" onclick="openGallery()">🖼️ Galeri</div>
+        <div class="menu-item" onclick="scrollTo('bottles')">🍶 Pesan Botol</div>
+        <div class="menu-item" onclick="scrollTo('quiet')">🕊️ Sudut Tenang</div>
     </div>
 
     <!-- Gallery Modal -->
-    <div class="modal-overlay" id="galleryModal" onclick="closeGallery(event)">
+    <div class="modal" id="galleryModal" onclick="closeGallery(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <div class="modal-title">🌿 Galeri Kenangan</div>
-                <div class="modal-subtitle">Momen-momen berharga yang terabadikan</div>
                 <button class="modal-close" onclick="closeGallery()">×</button>
             </div>
-            <div class="modal-body">
-                <div class="gallery-tabs">
-                    <div class="gallery-tab active" onclick="switchTab('landscape')">
-                        <span class="tab-icon">🖼️</span>
-                        <span>Landscape</span>
-                    </div>
-                    <div class="gallery-tab" onclick="switchTab('portrait')">
-                        <span class="tab-icon">📸</span>
-                        <span>Portrait</span>
-                    </div>
-                </div>
-
-                <div class="gallery-panel active" id="landscapePanel">
-                    <div class="scroll-container" id="landscapeScroll"></div>
-                    <div class="scroll-hint" id="landscapeHint">Geser untuk melihat lebih banyak</div>
-                </div>
-
-                <div class="gallery-panel" id="portraitPanel">
-                    <div class="scroll-container" id="portraitScroll"></div>
-                    <div class="scroll-hint" id="portraitHint">Geser untuk melihat lebih banyak</div>
-                </div>
-            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
         </div>
     </div>
 
     <!-- Lightbox -->
-    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        <button class="lightbox-nav lightbox-prev" onclick="navigateImage(-1)">‹</button>
-        <button class="lightbox-nav lightbox-next" onclick="navigateImage(1)">›</button>
-        <div class="lightbox-container" onclick="event.stopPropagation()">
-            <img class="lightbox-image" id="lightboxImage" src="" alt="">
-            <div class="lightbox-caption" id="lightboxCaption"></div>
-        </div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-close" onclick="closeLightbox()">×</div>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
-
-    <!-- Floating Elements -->
-    <div class="floating-element element-1">🍃</div>
-    <div class="floating-element element-2">🌿</div>
-    <div class="floating-element element-3">🍂</div>
-    <div class="floating-element element-4">🌱</div>
 
     <!-- Header -->
     <header class="header">
+        <div class="floating">🍃</div>
+        <div class="floating">🌿</div>
+        <div class="floating">🍂</div>
+        
         <div class="icon-main fade-up">🌿</div>
         <h1 class="fade-up">Di Antara Dedaunan</h1>
         <p class="subtitle fade-up">
             Ada ruang di mana kata-kata menjadi pelukan, 
             dan jarak tidak lagi berarti.
         </p>
-        <div class="scroll-indicator fade-up">
-            <span>Scroll</span>
-            <span>↓</span>
-        </div>
+        <div class="scroll-hint fade-up">↓</div>
     </header>
 
-    <!-- Content Sections -->
+    <!-- Content -->
     <section class="section">
         <div class="section-divider"></div>
-        <div class="poem fade-up">
+        <div class="poem fade-up" id="poem">
             <div class="poem-stanza">
                 <div class="poem-line">Ketika malam terasa terlalu sunyi,</div>
                 <div class="poem-line">dan beban di dada terlalu berat untuk diucapkan,</div>
@@ -1720,39 +901,35 @@
         <div class="section-divider"></div>
         <div class="section-title fade-up">Yang Tersimpan</div>
 
-        <div class="icon-block fade-up">
+        <div class="block fade-up">
             <div class="block-icon">🏠</div>
-            <div class="block-content">
+            <div>
                 <div class="block-title">Rumah yang Berbeda</div>
                 <div class="block-text">
                     Ada yang bercerita tentang dinding-dinding yang kini terlalu sepi, 
-                    tentang nama yang tertulis tapi tak lagi bisa dipanggil. 
-                    Tentang jarak yang bukan cuma soal kilometer, 
-                    tapi juga soal waktu yang tak bisa diputar.
+                    tentang nama yang tertulis tapi tak lagi bisa dipanggil.
                 </div>
             </div>
         </div>
 
-        <div class="icon-block fade-up">
+        <div class="block fade-up">
             <div class="block-icon">💧</div>
-            <div class="block-content">
+            <div>
                 <div class="block-title">Air Mata yang Jadi Bahasa</div>
                 <div class="block-text">
                     Ada malam di mana "capek" bukan cuma tentang fisik. 
-                    Di mana "kangen" menjadi kata yang terlalu kecil 
-                    untuk menggambarkan lubang yang terbuka.
+                    Di mana "kangen" menjadi kata yang terlalu kecil.
                 </div>
             </div>
         </div>
 
-        <div class="icon-block fade-up">
+        <div class="block fade-up">
             <div class="block-icon">🤲</div>
-            <div class="block-content">
+            <div>
                 <div class="block-title">Tangan yang Terulur</div>
                 <div class="block-text">
                     Dari kejauhan, ada yang mendengar. 
-                    Bukan dengan solusi, tapi dengan pengakuan: 
-                    "Aku tahu itu berat."
+                    Bukan dengan solusi, tapi dengan pengakuan: "Aku tahu itu berat."
                 </div>
             </div>
         </div>
@@ -1762,32 +939,25 @@
         <div class="section-divider"></div>
         <div class="section-title fade-up">Percakapan yang Menjadi Pelabuhan</div>
 
-        <div class="dialogue-section">
+        <div class="dialogue">
             <div class="voice voice-one fade-up">
-                <div class="voice-icon">🌧️</div>
                 <div class="voice-text">
                     "Aku disini, di tengah hujan yang tak kunjung reda. 
                     Rindu ini terlalu besar, terlalu nyata."
                 </div>
             </div>
-
             <div class="voice voice-two fade-up">
-                <div class="voice-icon">☂️</div>
                 <div class="voice-text">
                     "Aku tidak bisa menghentikan hujan. 
                     Tapi aku bisa berdiri di sini, bersamamu."
                 </div>
             </div>
-
             <div class="voice voice-one fade-up">
-                <div class="voice-icon">🌫️</div>
                 <div class="voice-text">
                     "Terkadang aku bertanya, mengapa yang baik pergi lebih dulu?"
                 </div>
             </div>
-
             <div class="voice voice-two fade-up">
-                <div class="voice-icon">🕯️</div>
                 <div class="voice-text">
                     "Aku tidak punya jawaban. 
                     Tapi aku punya kehadiran."
@@ -1799,72 +969,65 @@
     <section class="section" id="bottles">
         <div class="section-divider"></div>
         <div class="section-title fade-up">Pesan dalam Botol</div>
-        <p style="text-align: center; color: var(--warm-gray); margin-bottom: 40px; font-style: italic; font-size: 1.2rem;">
-            Klik botol untuk membaca apa yang tersimpan di dalamnya.
+        <p style="text-align: center; color: var(--warm-gray); margin-bottom: 40px; font-style: italic;">
+            Klik untuk membaca pesan yang tersimpan.
         </p>
 
-        <div class="bottles-section">
-            <div class="bottle-container">
-                <div class="bottle fade-up" onclick="openBottle(this)">
-                    <div class="bottle-icon">🍶</div>
-                    <div class="bottle-label">Botol Pertama</div>
-                    <div class="bottle-preview">"Aku tahu rasanya..."</div>
-                    <div class="bottle-content">
-                        Aku tahu rasanya kehilangan. Bukan persis seperti milikmu, tapi aku tahu rasanya 
-                        punya lubang di dada yang tidak bisa diisi oleh siapapun. 
-                        Aku tidak bisa mengisi lubangmu, tapi aku bisa duduk di sampingnya bersamamu.
-                    </div>
-                </div>
+        <div class="bottle fade-up" onclick="toggleBottle(this)">
+            <div class="bottle-icon">🍶</div>
+            <div class="bottle-label">Botol Pertama</div>
+            <div class="bottle-preview">"Aku tahu rasanya..."</div>
+            <div class="bottle-content">
+                Aku tahu rasanya kehilangan. Bukan persis seperti milikmu, tapi aku tahu rasanya 
+                punya lubang di dada yang tidak bisa diisi oleh siapapun.
+            </div>
+        </div>
 
-                <div class="bottle fade-up" onclick="openBottle(this)">
-                    <div class="bottle-icon">🫙</div>
-                    <div class="bottle-label">Botol Kedua</div>
-                    <div class="bottle-preview">"Tuhan masih menyayangimu..."</div>
-                    <div class="bottle-content">
-                        Tuhan masih menyayangimu. Bukan karena kamu sempurna, bukan karena kamu kuat, 
-                        tapi karena kamu adalah kamu. Kehilanganmu adalah kehilangan-Nya juga.
-                    </div>
-                </div>
+        <div class="bottle fade-up" onclick="toggleBottle(this)">
+            <div class="bottle-icon">🫙</div>
+            <div class="bottle-label">Botol Kedua</div>
+            <div class="bottle-preview">"Tuhan masih menyayangimu..."</div>
+            <div class="bottle-content">
+                Tuhan masih menyayangimu. Bukan karena kamu sempurna, bukan karena kamu kuat, 
+                tapi karena kamu adalah kamu.
+            </div>
+        </div>
 
-                <div class="bottle fade-up" onclick="openBottle(this)">
-                    <div class="bottle-icon">🍾</div>
-                    <div class="bottle-label">Botol Ketiga</div>
-                    <div class="bottle-preview">"Aku ada untukmu..."</div>
-                    <div class="bottle-content">
-                        Aku ada untukmu. Bukan setiap saat, bukan selalu tepat waktu, 
-                        tapi aku berusaha. Dan usaha itu adalah caraku mengatakan bahwa kamu berarti.
-                    </div>
-                </div>
+        <div class="bottle fade-up" onclick="toggleBottle(this)">
+            <div class="bottle-icon">🍾</div>
+            <div class="bottle-label">Botol Ketiga</div>
+            <div class="bottle-preview">"Aku ada untukmu..."</div>
+            <div class="bottle-content">
+                Aku ada untukmu. Bukan setiap saat, bukan selalu tepat waktu, 
+                tapi aku berusaha. Dan usaha itu adalah caraku mengatakan bahwa kamu berarti.
+            </div>
+        </div>
 
-                <div class="bottle fade-up" onclick="openBottle(this)">
-                    <div class="bottle-icon">🧴</div>
-                    <div class="bottle-label">Botol Keempat</div>
-                    <div class="bottle-preview">"Izinkan dirimu merasa..."</div>
-                    <div class="bottle-content">
-                        Izinkan dirimu merasa. Tidak apa-apa untuk tidak baik-baik saja. 
-                        Tidak apa-apa untuk mengeluh. Istirahatlah. Nanti kita lanjut lagi.
-                    </div>
-                </div>
+        <div class="bottle fade-up" onclick="toggleBottle(this)">
+            <div class="bottle-icon">🧴</div>
+            <div class="bottle-label">Botol Keempat</div>
+            <div class="bottle-preview">"Izinkan dirimu merasa..."</div>
+            <div class="bottle-content">
+                Izinkan dirimu merasa. Tidak apa-apa untuk tidak baik-baik saja. 
+                Istirahatlah. Nanti kita lanjut lagi.
             </div>
         </div>
 
         <div class="secret-box fade-up">
-            <div style="font-size: 3rem; margin-bottom: 20px;">✍️</div>
-            <div class="block-title" style="margin-bottom: 15px; font-size: 1.8rem;">Tulis Pesanmu Sendiri</div>
-            <p style="color: var(--warm-gray); margin-bottom: 25px; font-size: 1.1rem; font-style: italic;">
+            <div style="font-size: 2.5rem; margin-bottom: 20px;">✍️</div>
+            <div class="block-title" style="margin-bottom: 15px;">Tulis Pesanmu Sendiri</div>
+            <p style="color: var(--warm-gray); margin-bottom: 20px; font-style: italic;">
                 Sebuah pesan untuk diri sendiri, untuk yang pergi, atau untuk yang menemani.
             </p>
-            <textarea class="secret-input" placeholder="Tulislah apa yang ingin keluar dari dada..."></textarea>
-            <button style="margin-top: 20px;" onclick="releaseMessage()">
-                <span style="margin-right: 8px;">🕊️</span> Lepaskan
-            </button>
-            <p id="releaseText" style="margin-top: 25px; color: var(--gold-dark); font-style: italic; min-height: 30px; font-size: 1.1rem;"></p>
+            <textarea id="secretInput" placeholder="Tulislah apa yang ingin keluar dari dada..."></textarea>
+            <button onclick="releaseMessage()">🕊️ Lepaskan</button>
+            <p id="releaseMsg" style="margin-top: 25px; color: var(--gold-dark); font-style: italic; min-height: 25px;"></p>
         </div>
     </section>
 
     <section class="section" id="quiet">
         <div class="section-divider"></div>
-        <div class="quiet-corner fade-up">
+        <div class="quiet fade-up">
             <div class="quiet-icon">🕊️</div>
             <div class="quiet-text">
                 "Kalau kamu butuh teman,<br>
@@ -1876,445 +1039,165 @@
     </section>
 
     <footer>
-        <div class="footer-decoration">✦ ❦ ✦</div>
         <div class="closing-icon fade-up">🫂</div>
-        <div class="closing-words fade-up">
+        <div class="closing-text fade-up">
             Di antara dedaunan yang jatuh dan tumbuh kembali, 
             ada kita yang belajar: bahwa kehilangan bukan akhir, 
             hanya babak yang berbeda.
         </div>
-        <p class="fade-up" style="font-size: 1rem; opacity: 0.7; color: var(--warm-gray); letter-spacing: 2px;">
-            🌿 Di Antara Dedaunan · Sebuah ruang untuk menghela napas 🌿
+        <p class="footer-line fade-up">✦ ❦ ✦</p>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--warm-gray); opacity: 0.6;">
+            Di Antara Dedaunan · Sebuah ruang untuk menghela napas
         </p>
     </footer>
 
     <script>
-        // Gold Dust Particles
-        function createGoldDust() {
-            const container = document.getElementById('goldDustContainer');
-            const particleCount = 25;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const dust = document.createElement('div');
-                dust.className = 'gold-dust';
-                dust.style.left = Math.random() * 100 + '%';
-                dust.style.animationDelay = Math.random() * 15 + 's';
-                dust.style.animationDuration = (10 + Math.random() * 10) + 's';
-                container.appendChild(dust);
-            }
-        }
-
-        // Gallery Configuration
-        const galleryImages = {
-            landscape: [
-                { file: 'static/image/Landscape1.jpg', caption: 'Momen Keemasan' },
-                { file: 'static/image/Landscape2.jpg', caption: 'Senyum di Antara Dedaunan' },
-                { file: 'static/image/Landscape3.jpg', caption: 'Waktu yang Berhenti Sejenak' },
-                { file: 'static/image/Landscape4.jpg', caption: 'Pelukan dari Alam' },
-                { file: 'static/image/Landscape5.jpg', caption: 'Cahaya di Ujung Jalan' },
-                { file: 'static/image/Landscape6.jpg', caption: 'Kenangan Abadi' }
-            ],
-            portrait: [
-                { file: 'portrait1.jpg', caption: 'Tatapan yang Tersimpan' },
-                { file: 'portrait2.jpg', caption: 'Momen Kebersamaan' },
-                { file: 'portrait3.jpg', caption: 'Senyum di Balik Dedaunan' },
-                { file: 'portrait4.jpg', caption: 'Kehangatan yang Terabadikan' },
-                { file: 'portrait5.jpg', caption: 'Cerita dalam Satu Bingkai' },
-                { file: 'portrait6.jpg', caption: 'Kilau di Mata' }
-            ]
-        };
-
-        let currentTab = 'landscape';
-        let currentImageIndex = 0;
-        let currentImageList = [];
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createGoldDust();
-        });
-
-        // Menu Functions
+        // ==========================================
+        // KONFIGURASI GAMBAR
+        // ==========================================
+        const imageUrls = [
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800', caption: 'Gunung & Kabut' },
+            { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800', caption: 'Alam Liar' },
+            { src: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800', caption: 'Hutan Tenang' },
+            { src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800', caption: 'Air Terjun' },
+            { src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800', caption: 'Danau Biru' },
+            { src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800', caption: 'Kabut Pagi' }
+        ];
+        
+        // ==========================================
+        // INTERSECTION OBSERVER
+        // ==========================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        
+        // ==========================================
+        // MENU FUNCTIONS
+        // ==========================================
         function toggleMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const dropdown = document.getElementById('menuDropdown');
-                        hamburger.classList.toggle('active');
-            dropdown.classList.toggle('active');
+            document.querySelector('.menu-btn').classList.toggle('active');
+            document.getElementById('menuDropdown').classList.toggle('active');
         }
-
+        
+        function scrollTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            toggleMenu();
+        }
+        
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.querySelector('.menu-container');
-            if (!menu.contains(event.target)) {
-                document.querySelector('.hamburger').classList.remove('active');
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.menu-btn') && !e.target.closest('.menu-dropdown')) {
+                document.querySelector('.menu-btn').classList.remove('active');
                 document.getElementById('menuDropdown').classList.remove('active');
             }
         });
-
-        // Switch Tab
-        function switchTab(tab) {
-            currentTab = tab;
+        
+        // ==========================================
+        // BOTTLE FUNCTIONS
+        // ==========================================
+        function toggleBottle(el) {
+            const isOpen = el.classList.contains('open');
             
-            // Update tab buttons
-            document.querySelectorAll('.gallery-tab').forEach(t => {
-                t.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-            
-            // Update panels
-            document.querySelectorAll('.gallery-panel').forEach(p => {
-                p.classList.remove('active');
-            });
-            document.getElementById(tab + 'Panel').classList.add('active');
-            
-            // Load images
-            loadGallery(tab);
-        }
-
-        // Load Gallery Images
-        function loadGallery(type) {
-            const container = document.getElementById(type + 'Scroll');
-            const images = galleryImages[type];
-            
-            container.innerHTML = '';
-            
-            images.forEach((img, index) => {
-                const item = document.createElement('div');
-                item.className = type === 'landscape' ? 'gallery-item-landscape' : 'gallery-item-portrait';
-                item.onclick = () => openLightbox(type, index);
-                
-                item.innerHTML = `
-                    <img src="static/image/${img.file}" 
-                         alt="${img.caption}" 
-                         loading="lazy"
-                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'gallery-placeholder\\'><div class=\\'gallery-placeholder-icon\\'>🖼️</div><div class=\\'gallery-placeholder-text\\'>${img.file}<br><small style=\\'color: var(--gold);\\'>Letakkan gambar di static/image/</small></div></div>';">
-                    <div class="gallery-caption">${img.caption}</div>
-                `;
-                
-                // Staggered animation
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                container.appendChild(item);
-                
-                setTimeout(() => {
-                    item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, index * 100);
+            document.querySelectorAll('.bottle').forEach(b => {
+                b.classList.remove('open');
             });
             
-            // Check empty state
-            setTimeout(() => {
-                const loadedImages = container.querySelectorAll('img');
-                if (loadedImages.length === 0) {
-                    container.innerHTML = `
-                        <div class="empty-gallery">
-                            <div class="empty-gallery-icon">📁</div>
-                            <div style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 15px; color: var(--charcoal);">
-                                Folder static/image/ masih kosong
-                            </div>
-                            <div style="font-size: 1rem; opacity: 0.7; color: var(--warm-gray);">
-                                Tambahkan gambar ${type} dengan nama:<br>
-                                <span style="color: var(--gold); font-weight: 600;">${type}1.jpg, ${type}2.jpg, dst.</span>
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById(type + 'Hint').style.display = 'none';
-                }
-            }, 1500);
-        }
-
-        // Open Gallery Modal
-        function openGallery() {
-            loadGallery('landscape');
-            loadGallery('portrait');
-            
-            const modal = document.getElementById('galleryModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            toggleMenu();
-        }
-
-        // Close Gallery Modal
-        function closeGallery(event) {
-            if (!event || event.target.id === 'galleryModal') {
-                const modal = document.getElementById('galleryModal');
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            if (!isOpen) {
+                el.classList.add('open');
             }
         }
-
-        // LIGHTBOX FUNCTIONS
-        function openLightbox(type, index) {
-            currentImageList = galleryImages[type];
-            currentImageIndex = index;
-            
-            const lightbox = document.getElementById('lightbox');
-            const img = currentImageList[index];
-            
-            document.getElementById('lightboxImage').src = 'static/image/' + img.file;
-            document.getElementById('lightboxCaption').textContent = img.caption;
-            
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox(event) {
-            if (!event || event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
-                const lightbox = document.getElementById('lightbox');
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function navigateImage(direction) {
-            currentImageIndex += direction;
-            
-            // Loop navigation
-            if (currentImageIndex < 0) {
-                currentImageIndex = currentImageList.length - 1;
-            } else if (currentImageIndex >= currentImageList.length) {
-                currentImageIndex = 0;
-            }
-            
-            const img = currentImageList[currentImageIndex];
-            document.getElementById('lightboxImage').src = 'static/image/' + img.file;
-            document.getElementById('lightboxCaption').textContent = img.caption;
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') navigateImage(-1);
-                if (e.key === 'ArrowRight') navigateImage(1);
-            }
-        });
-
-        // Touch/Swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        const lightboxElement = document.getElementById('lightbox');
-        lightboxElement.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        lightboxElement.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) navigateImage(1);
-            if (touchEndX > touchStartX + 50) navigateImage(-1);
-        }
-
-        // Scroll to section
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            const offset = 80;
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = element.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-            
-            toggleMenu();
-        }
-
-        // Intersection Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Open bottle
-        function openBottle(element) {
-            const isOpened = element.classList.contains('opened');
-            
-            // Close others
-            document.querySelectorAll('.bottle').forEach(bottle => {
-                if (bottle !== element) {
-                    bottle.classList.remove('opened');
-                    bottle.style.transform = '';
-                }
-            });
-            
-            // Toggle current
-            if (!isOpened) {
-                element.classList.add('opened');
-                element.style.transform = 'translateX(20px) scale(1.02)';
-                
-                // Sparkle effect
-                const sparkle = document.createElement('div');
-                sparkle.innerHTML = '✨';
-                sparkle.style.cssText = 'position: absolute; right: 20px; top: 20px; font-size: 2rem; pointer-events: none; animation: fadeOut 1s forwards;';
-                element.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 1000);
-            } else {
-                element.classList.remove('opened');
-                element.style.transform = '';
-            }
-        }
-
-        // Release message
+        
+        // ==========================================
+        // MESSAGE RELEASE
+        // ==========================================
         function releaseMessage() {
-            const input = document.querySelector('.secret-input');
-            const text = input.value.trim();
-            const releaseText = document.getElementById('releaseText');
+            const input = document.getElementById('secretInput');
+            const msg = document.getElementById('releaseMsg');
             
-            if (text) {
-                // Animate button
-                const button = document.querySelector('.secret-box button');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<span style="margin-right: 8px;">🕊️</span> Terbang...';
+            if (input.value.trim()) {
+                msg.textContent = "Pesanmu telah dilepaskan. Biarkan hatimu sedikit lebih ringan.";
+                msg.style.color = 'var(--gold-dark)';
+                input.value = '';
                 
                 setTimeout(() => {
-                    button.innerHTML = originalText;
-                    releaseText.textContent = "Pesanmu telah dilepaskan ke angin seperti burung emas. Biarkan ia pergi, dan biarkan hatimu sedikit lebih ringan. ✨🕊️";
-                    releaseText.style.color = 'var(--gold-dark)';
-                    input.value = '';
-                    
-                    // Floating animation
-                    let floatInterval = setInterval(() => {
-                        releaseText.style.transform = 'translateY(-5px)';
-                        setTimeout(() => {
-                            releaseText.style.transform = 'translateY(0)';
-                        }, 500);
-                    }, 1000);
-                    
-                    // Reset after 6 seconds
+                    msg.style.opacity = '0';
                     setTimeout(() => {
-                        clearInterval(floatInterval);
-                        releaseText.style.opacity = '0';
-                        setTimeout(() => {
-                            releaseText.textContent = '';
-                            releaseText.style.opacity = '1';
-                            releaseText.style.transform = '';
-                        }, 500);
-                    }, 6000);
-                }, 800);
+                        msg.textContent = '';
+                        msg.style.opacity = '1';
+                    }, 300);
+                }, 4000);
             } else {
-                releaseText.textContent = "Tulislah sesuatu, meski hanya satu kata. Setiap perasaan layak diakui seperti emas yang tengah diasah. ✨";
-                releaseText.style.color = 'var(--bronze)';
-                
-                // Shake animation
-                input.style.animation = 'shake 0.5s ease';
+                msg.textContent = "Tulislah sesuatu, meski hanya satu kata.";
+                msg.style.color = 'var(--warm-gray)';
+                input.style.borderColor = 'var(--gold)';
                 setTimeout(() => {
-                    input.style.animation = '';
-                }, 500);
+                    input.style.borderColor = '';
+                }, 1000);
             }
         }
-
-        // Parallax effect
+        
+        // ==========================================
+        // GALLERY FUNCTIONS
+        // ==========================================
+        function openGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = imageUrls.map((img, i) => `
+                <div class="gallery-item" onclick="openLightbox('${img.src}', '${img.caption}')" style="animation: fadeIn ${0.4 + i * 0.1}s ease-out">
+                    <img src="${img.src}" loading="lazy" onerror="this.style.display='none'">
+                    <div class="gallery-caption">${img.caption}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('galleryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            toggleMenu();
+        }
+        
+        function closeGallery(e) {
+            if (!e || e.target.id === 'galleryModal') {
+                document.getElementById('galleryModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        
+        // ==========================================
+        // KEYBOARD NAVIGATION
+        // ==========================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('galleryModal').classList.remove('active');
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // ==========================================
+        // PARALLAX SCROLL (Subtle)
+        // ==========================================
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.floating-element');
-            
-            parallax.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            const parallax = document.querySelectorAll('.floating');
+            parallax.forEach((el, i) => {
+                const speed = 0.3 + i * 0.05;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
-
-        // Mouse move effect for gold dust
-        document.addEventListener('mousemove', (e) => {
-            const dusts = document.querySelectorAll('.gold-dust');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            dusts.forEach((dust, index) => {
-                if (index % 5 === 0) {
-                    const offsetX = (mouseX - 0.5) * 30;
-                    const offsetY = (mouseY - 0.5) * 30;
-                    dust.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-                }
-            });
-        });
-
-        // Console art
-        console.log('%c🌿 Di Antara Dedaunan', 'font-family: Playfair Display; font-size: 24px; color: #d4af37; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
-        console.log('%c"Kalau kamu butuh teman, aku ada untukmu."', 'font-style: italic; color: #8a8279; font-size: 14px;');
-        console.log('%c✨ Modern Classic Gold Edition ✨', 'color: #d4af37; font-size: 12px; letter-spacing: 2px;');
-
-        setTimeout(() => {
-            console.log('%c💡 Tips: Gunakan arrow keys untuk navigasi foto, ESC untuk menutup.', 'color: #cd7f32; font-style: italic;');
-        }, 10000);
-
-        // Easter egg: Konami code
-        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    activateEasterEgg();
-                    konamiIndex = 0;
-                }
-            } else {
-                konamiIndex = 0;
-            }
-        });
-
-        function activateEasterEgg() {
-            // Sepia filter
-            document.body.style.filter = 'sepia(0.3) saturate(1.5)';
-            
-            // Create message
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, #d4af37, #b8941f);
-                color: #2c2c2c;
-                padding: 40px 60px;
-                border-radius: 20px;
-                font-family: Playfair Display;
-                font-size: 1.5rem;
-                text-align: center;
-                z-index: 9999;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-                animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            `;
-            message.innerHTML = `
-                <div style="font-size: 3rem; margin-bottom: 15px;">🌟</div>
-                <div>Kamu menemukan rahasia emas!</div>
-                <div style="font-size: 1rem; margin-top: 10px; opacity: 0.8;">
-                    "Setiap momen berharga layak diabadikan dalam emas"
-                </div>
-            `;
-            document.body.appendChild(message);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                message.remove();
-                document.body.style.filter = '';
-            }, 3000);
-        }
     </script>
 </body>
 </html>
