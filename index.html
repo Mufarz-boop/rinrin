@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Di Antara Dedaunan | Sebuah Ruang</title>
+    <title>Di Antara Dedaunan</title>
     
     <!-- Favicon - Leaf/Natural Theme -->
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f343.svg" type="image/svg+xml">
@@ -212,51 +212,131 @@
             max-height: calc(85vh - 120px);
         }
 
-        /* TRANSPARENT SCROLL CONTAINER */
+        /* TAB NAVIGATION */
+        .gallery-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(156, 175, 136, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .gallery-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--stone);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .gallery-tab:hover {
+            background: rgba(156, 175, 136, 0.1);
+            color: var(--fern);
+        }
+
+        .gallery-tab.active {
+            background: linear-gradient(135deg, var(--sage), var(--fern));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(156, 175, 136, 0.3);
+        }
+
+        .tab-icon {
+            font-size: 1.3rem;
+        }
+
+        /* GALLERY CONTAINERS */
+        .gallery-panel {
+            display: none;
+        }
+
+        .gallery-panel.active {
+            display: block;
+        }
+
+        /* SCROLL CONTAINER */
         .scroll-container {
             display: flex;
             gap: 20px;
             overflow-x: auto;
             overflow-y: hidden;
             padding: 20px 10px;
-            /* TRANSPARENT BACKGROUND */
             background: transparent;
-            /* HIDE SCROLLBAR BUT KEEP FUNCTIONALITY */
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             scroll-behavior: smooth;
         }
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
         .scroll-container::-webkit-scrollbar {
             display: none;
         }
 
-        .gallery-item {
+        /* LANDSCAPE GALLERY ITEMS */
+        .gallery-item-landscape {
             flex: 0 0 auto;
-            width: 280px;
-            height: 350px;
-            border-radius: 20px;
+            width: 320px;
+            height: 220px;
+            border-radius: 15px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
             transition: all 0.4s ease;
             cursor: pointer;
+            background: var(--mist);
         }
 
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        .gallery-item-landscape:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
         }
 
-        .gallery-item img {
+        .gallery-item-landscape img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .gallery-item:hover img {
+        .gallery-item-landscape:hover img {
+            transform: scale(1.1);
+        }
+
+        /* PORTRAIT GALLERY ITEMS */
+        .gallery-item-portrait {
+            flex: 0 0 auto;
+            width: 220px;
+            height: 320px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: var(--mist);
+        }
+
+        .gallery-item-portrait:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+        }
+
+        .gallery-item-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item-portrait:hover img {
             transform: scale(1.1);
         }
 
@@ -267,20 +347,47 @@
             right: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
             color: white;
-            padding: 30px 20px 20px;
+            padding: 30px 15px 15px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.3s ease;
         }
 
-        .gallery-item:hover .gallery-caption {
+        .gallery-item-landscape:hover .gallery-caption,
+        .gallery-item-portrait:hover .gallery-caption {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* SCROLL INDICATOR (SUBTLE) */
+        /* PLACEHOLDER STYLING */
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--sage), var(--fern));
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gallery-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .gallery-placeholder-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* SCROLL HINT */
         .scroll-hint {
             text-align: center;
             margin-top: 15px;
@@ -290,6 +397,147 @@
             font-style: italic;
         }
 
+        /* EMPTY STATE */
+        .empty-gallery {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--stone);
+        }
+
+        .empty-gallery-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* LIGHTBOX / IMAGE VIEWER */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-image {
+            transform: scale(1);
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+        }
+
+        .lightbox-overlay.active .lightbox-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3001;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .lightbox-overlay:hover .lightbox-nav {
+            opacity: 1;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+            .lightbox-nav { opacity: 1; }
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .menu-container {
@@ -297,9 +545,14 @@
                 right: 20px;
             }
             
-            .gallery-item {
-                width: 240px;
-                height: 300px;
+            .gallery-item-landscape {
+                width: 280px;
+                height: 190px;
+            }
+            
+            .gallery-item-portrait {
+                width: 190px;
+                height: 280px;
             }
             
             .modal-content {
@@ -308,6 +561,12 @@
             
             .modal-body {
                 max-height: calc(90vh - 120px);
+                padding: 20px;
+            }
+
+            .gallery-tab {
+                font-size: 1rem;
+                padding: 12px 15px;
             }
         }
 
@@ -832,7 +1091,7 @@
         <div class="menu-dropdown" id="menuDropdown">
             <div class="menu-item" onclick="openGallery()">
                 <span class="menu-item-icon">🖼️</span>
-                <span>Lihat Kenangan</span>
+                <span>Gallery</span>
             </div>
             <div class="menu-item" onclick="scrollToSection('bottles')">
                 <span class="menu-item-icon">🍶</span>
@@ -840,7 +1099,7 @@
             </div>
             <div class="menu-item" onclick="scrollToSection('quiet')">
                 <span class="menu-item-icon">🕊️</span>
-                <span>Sudut Tenang</span>
+                <span>Sudut Dunia</span>
             </div>
         </div>
     </div>
@@ -849,39 +1108,50 @@
     <div class="modal-overlay" id="galleryModal" onclick="closeGallery(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
-                <div class="modal-title">🌿 Kenangan di Antara Dedaunan</div>
-                <div class="modal-subtitle">Momen-momen yang tersimpan dalam bingkai</div>
+                <div class="modal-title">🌿 Lihat</div>
+                <div class="modal-subtitle">Kamu itu tak pantas merasa sedih</div>
                 <button class="modal-close" onclick="closeGallery()">×</button>
             </div>
             <div class="modal-body">
-                <div class="scroll-container" id="galleryScroll">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&h=500&fit=crop" alt="Forest">
-                        <div class="gallery-caption">Hutan yang menyapa pagi</div>
+                <!-- Tab Navigation -->
+                <div class="gallery-tabs">
+                    <div class="gallery-tab active" onclick="switchTab('landscape')">
+                        <span class="tab-icon">🖼️</span>
+                        <span>Landscape</span>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop" alt="Sunlight">
-                        <div class="gallery-caption">Cahaya yang menembus dedaunan</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" alt="Leaves">
-                        <div class="gallery-caption">Daun-daun yang berbisik</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?w=400&h=500&fit=crop" alt="Mist">
-                        <div class="gallery-caption">Kabut pagi yang menyelimuti</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=400&h=500&fit=crop" alt="Nature">
-                        <div class="gallery-caption">Alam yang tak pernah bosan mendengar</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=500&fit=crop" alt="Path">
-                        <div class="gallery-caption">Jalan setapak menuju kedamaian</div>
+                    <div class="gallery-tab" onclick="switchTab('portrait')">
+                        <span class="tab-icon">📸</span>
+                        <span>Portrait</span>
                     </div>
                 </div>
-                <div class="scroll-hint">← Geser untuk melihat lebih banyak →</div>
+
+                <!-- Landscape Panel -->
+                <div class="gallery-panel active" id="landscapePanel">
+                    <div class="scroll-container" id="landscapeScroll">
+                        <!-- Landscape images will be loaded here -->
+                    </div>
+                    <div class="scroll-hint" id="landscapeHint">← Geser untuk melihat lebih banyak →</div>
+                </div>
+
+                <!-- Portrait Panel -->
+                <div class="gallery-panel" id="portraitPanel">
+                    <div class="scroll-container" id="portraitScroll">
+                        <!-- Portrait images will be loaded here -->
+                    </div>
+                    <div class="scroll-hint" id="portraitHint">← Geser untuk melihat lebih banyak →</div>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Image Viewer -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateImage(-1)">‹</button>
+        <button class="lightbox-nav lightbox-next" onclick="navigateImage(1)">›</button>
+        <div class="lightbox-container" onclick="event.stopPropagation()">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
     </div>
 
@@ -1118,6 +1388,30 @@
     </footer>
 
     <script>
+        // KONFIGURASI GALLERY - Pisahkan landscape dan portrait
+        const galleryImages = {
+            landscape: [
+                { file: 'landscape1.jpg', caption: 'Momen yang tersimpan' },
+                { file: 'landscape2.jpg', caption: 'Senyum di antara dedaunan' },
+                { file: 'landscape3.jpg', caption: 'Waktu yang berhenti sejenak' },
+                { file: 'landscape4.jpg', caption: 'Pelukan dari alam' },
+                { file: 'landscape5.jpg', caption: 'Cahaya di ujung jalan' },
+                { file: 'landscape6.jpg', caption: 'Kenangan yang tak terlupakan' }
+            ],
+            portrait: [
+                { file: 'portrait1.jpg', caption: 'Tatapan yang tersimpan' },
+                { file: 'portrait2.jpg', caption: 'Momen kebersamaan' },
+                { file: 'portrait3.jpg', caption: 'Senyum di balik dedaunan' },
+                { file: 'portrait4.jpg', caption: 'Kehangatan yang terabadikan' },
+                { file: 'portrait5.jpg', caption: 'Cerita dalam satu bingkai' },
+                { file: 'portrait6.jpg', caption: 'Kilau di mata' }
+            ]
+        };
+
+        let currentTab = 'landscape';
+        let currentImageIndex = 0;
+        let currentImageList = [];
+
         // Toggle Menu
         function toggleMenu() {
             document.querySelector('.hamburger').classList.toggle('active');
@@ -1133,11 +1427,66 @@
             }
         });
 
+        // Switch Tab
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update tab buttons
+            document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            // Update panels
+            document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(tab + 'Panel').classList.add('active');
+            
+            // Load images for this tab if not loaded
+            loadGallery(tab);
+        }
+
+        // Load Gallery Images
+        function loadGallery(type) {
+            const container = document.getElementById(type + 'Scroll');
+            const images = galleryImages[type];
+            
+            container.innerHTML = '';
+            
+            images.forEach((img, index) => {
+                const item = document.createElement('div');
+                item.className = type === 'landscape' ? 'gallery-item-landscape' : 'gallery-item-portrait';
+                item.onclick = () => openLightbox(type, index);
+                item.innerHTML = `
+                    <img src="static/image/${img.file}" 
+                         alt="${img.caption}" 
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'gallery-placeholder\\'><div class=\\'gallery-placeholder-icon\\'>🖼️</div><div class=\\'gallery-placeholder-text\\'>${img.file}<br><small>Letakkan gambar di static/image/</small></div></div>';">
+                    <div class="gallery-caption">${img.caption}</div>
+                `;
+                container.appendChild(item);
+            });
+            
+            // Check if empty after load
+            setTimeout(() => {
+                const loadedImages = container.querySelectorAll('img');
+                const placeholders = container.querySelectorAll('.gallery-placeholder');
+                if (loadedImages.length === 0 && placeholders.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-gallery">
+                            <div class="empty-gallery-icon">📁</div>
+                            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 10px;">Folder static/image/ masih kosong</div>
+                            <div style="font-size: 0.95rem; opacity: 0.7;">Tambahkan gambar ${type} dengan nama:<br>${type}1.jpg, ${type}2.jpg, dst.</div>
+                        </div>
+                    `;
+                    document.getElementById(type + 'Hint').style.display = 'none';
+                }
+            }, 1000);
+        }
+
         // Open Gallery Modal
         function openGallery() {
+            loadGallery('landscape');
+            loadGallery('portrait');
             document.getElementById('galleryModal').classList.add('active');
             document.body.style.overflow = 'hidden';
-            toggleMenu(); // Close hamburger menu
+            toggleMenu();
         }
 
         // Close Gallery Modal
@@ -1148,10 +1497,54 @@
             }
         }
 
+        // LIGHTBOX FUNCTIONS
+        function openLightbox(type, index) {
+            currentImageList = galleryImages[type];
+            currentImageIndex = index;
+            showLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showLightboxImage() {
+            const img = currentImageList[currentImageIndex];
+            document.getElementById('lightboxImage').src = 'static/image/' + img.file;
+            document.getElementById('lightboxCaption').textContent = img.caption;
+        }
+
+        function closeLightbox(event) {
+            if (!event || event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function navigateImage(direction) {
+            currentImageIndex += direction;
+            
+            // Loop navigation
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentImageList.length - 1;
+            } else if (currentImageIndex >= currentImageList.length) {
+                currentImageIndex = 0;
+            }
+            
+            showLightboxImage();
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateImage(-1);
+                if (e.key === 'ArrowRight') navigateImage(1);
+            }
+        });
+
         // Scroll to section
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            toggleMenu(); // Close hamburger menu
+            toggleMenu();
         }
 
         // Intersection Observer
@@ -1169,14 +1562,11 @@
 
         // Open bottle
         function openBottle(element) {
-            // Close others
             document.querySelectorAll('.bottle').forEach(bottle => {
                 if (bottle !== element) {
                     bottle.classList.remove('opened');
                 }
             });
-            
-            // Toggle current
             element.classList.toggle('opened');
         }
 
@@ -1202,7 +1592,6 @@
         console.log('%c🌿 Di Antara Dedaunan', 'font-family: Cormorant Garamond; font-size: 20px; color: #9caf88;');
         console.log('%c"Kalau kamu butuh teman, aku ada untukmu."', 'font-style: italic; color: #8b8680;');
 
-        // Gentle reminder
         setTimeout(() => {
             console.log('%cKlik botol untuk membaca pesan. Tulis untuk melepaskan.', 'color: #a8c4d9; font-style: italic;');
         }, 10000);
