@@ -858,10 +858,10 @@
         }
         
         /* ==========================================
-           GALLERY SECTION STYLES
+           GALLERY MESSAGE-STYLE SECTION
            ========================================== */
         
-        .gallery-section {
+        .gallery-message-section {
             background: linear-gradient(135deg, rgba(201, 162, 39, 0.03), transparent);
             border-radius: 25px;
             padding: 50px 30px;
@@ -869,139 +869,130 @@
             border: 1px solid rgba(201, 162, 39, 0.15);
         }
         
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 1;
-            background: var(--champagne);
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.4s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(44,44,44,0.8));
-            padding: 20px 15px 15px;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-caption {
-            color: white;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            font-style: italic;
-        }
-        
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(44, 44, 44, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 3000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .lightbox.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .lightbox-content {
-            max-width: 90vw;
-            max-height: 85vh;
-            position: relative;
-            transform: scale(0.9);
-            transition: all 0.4s ease;
-        }
-        
-        .lightbox.active .lightbox-content {
-            transform: scale(1);
-        }
-        
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 12px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: white;
-            font-size: 1.3rem;
-        }
-        
-        .lightbox-close:hover {
-            background: var(--gold);
-            transform: rotate(90deg);
-        }
-        
-        .lightbox-caption {
-            position: absolute;
-            bottom: -60px;
-            left: 0;
-            right: 0;
+        .gallery-hint {
             text-align: center;
-            color: white;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            color: var(--warm-gray);
             font-style: italic;
-            padding: 0 20px;
+            margin-bottom: 30px;
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+        }
+        
+        /* Gallery List - Message Style */
+        .gallery-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .gallery-message-item {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .gallery-message-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, rgba(201, 162, 39, 0.1), transparent);
+            transition: width 0.3s ease;
+        }
+        
+        .gallery-message-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-message-item:hover::before {
+            width: 100%;
+        }
+        
+        .gallery-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--charcoal);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .gallery-preview {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+            font-style: italic;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .gallery-arrow {
+            color: var(--gold);
+            font-size: 1.2rem;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-message-item:hover .gallery-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        /* Gallery Detail Modal */
+        .gallery-detail-content {
+            background: linear-gradient(135deg, var(--champagne), white);
+            border-radius: 18px;
+            overflow: hidden;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .gallery-detail-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-detail-text {
+            padding: 25px 30px;
+        }
+        
+        .gallery-detail-caption {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .gallery-detail-desc {
+            color: var(--warm-gray);
+            font-size: 1rem;
+            line-height: 1.8;
         }
         
         /* Mobile Optimizations */
@@ -1033,29 +1024,35 @@
             .message-detail { padding: 20px; }
             .detail-content { padding: 20px; }
             
-            /* Gallery Mobile - SMALLER IMAGES */
-            .gallery-section { 
+            /* Gallery Mobile */
+            .gallery-message-section { 
                 padding: 25px 15px; 
                 margin: 30px 0;
             }
-            .gallery-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 8px; 
-                margin-top: 20px;
+            .gallery-message-item { 
+                padding: 15px; 
+                gap: 12px;
             }
-            .gallery-item { 
-                border-radius: 8px; 
-                aspect-ratio: 1;
+            .gallery-thumb { 
+                width: 50px; 
+                height: 50px; 
+                border-radius: 10px;
             }
-            .gallery-overlay { 
-                padding: 10px 8px 8px; 
+            .gallery-title { 
+                font-size: 1rem; 
             }
-            .gallery-caption { 
-                font-size: 0.7rem; 
-                line-height: 1.3;
+            .gallery-preview { 
+                font-size: 0.85rem; 
             }
-            
-            .lightbox-caption { font-size: 0.95rem; bottom: -50px; }
+            .gallery-detail-img {
+                max-height: 300px;
+            }
+            .gallery-detail-text {
+                padding: 20px;
+            }
+            .gallery-detail-caption {
+                font-size: 1.1rem;
+            }
         }
         
         @media (min-width: 768px) {
@@ -1066,8 +1063,6 @@
             .secret-box { padding: 50px; }
             .quiet { padding: 70px 50px; }
             .poem { padding: 50px 40px; }
-            
-            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -1144,19 +1139,19 @@
     </section>
 
     <!-- ==========================================
-         GALLERY SECTION
+         GALLERY SECTION - MESSAGE STYLE
          ========================================== -->
     <section class="section">
         <div class="section-divider"></div>
-        <div class="section-title fade-up">Momen yang Tersimpan</div>
+        <div class="section-title fade-up">Album Kenangan</div>
         
-        <div class="gallery-section fade-up">
-            <p style="text-align: center; color: var(--warm-gray); font-style: italic; margin-bottom: 10px; font-size: clamp(0.95rem, 2.5vw, 1.05rem);">
-                Klik gambar untuk melihat lebih dekat.
+        <div class="gallery-message-section fade-up">
+            <p class="gallery-hint">
+                Kenangan yang tertangkap dalam bingkai, klik untuk membuka.
             </p>
             
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Images will be populated by JavaScript -->
+            <div class="gallery-list" id="galleryList">
+                <!-- Gallery items will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1323,12 +1318,41 @@
     </div>
 
     <!-- ==========================================
-         LIGHTBOX HTML
+         GALLERY MODAL
          ========================================== -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img class="lightbox-img" id="lightboxImg" src="" alt="">
-            <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="modal-overlay" id="galleryModal" onclick="closeGalleryModal(event)">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modal-header">
+                <div class="modal-title">🖼️ Album Kenangan</div>
+                <div class="modal-subtitle">Momen-momen yang tertangkap waktu</div>
+            </div>
+            
+            <!-- Body -->
+            <div class="modal-body">
+                <!-- Gallery List View -->
+                <div class="message-list" id="galleryListModal">
+                    <!-- Gallery items will be populated here too -->
+                </div>
+                
+                <!-- Gallery Detail View -->
+                <div class="message-detail" id="galleryDetail">
+                    <div class="detail-header">
+                        <button class="back-btn" onclick="showGalleryList()">←</button>
+                        <div class="detail-sender-info">
+                            <h3 id="galleryDetailTitle">Judul Foto</h3>
+                            <div class="detail-date" id="galleryDetailDate">Tanggal</div>
+                        </div>
+                    </div>
+                    <div class="gallery-detail-content">
+                        <img class="gallery-detail-img" id="galleryDetailImg" src="" alt="">
+                        <div class="gallery-detail-text">
+                            <div class="gallery-detail-caption" id="galleryDetailCaption">Caption</div>
+                            <div class="gallery-detail-desc" id="galleryDetailDesc">Deskripsi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1337,14 +1361,102 @@
         // DATA PESAN
         // ==========================================
         const messages = [
-
-        ];
+            {
+                id: 1,
+                sender: "Kamu Berhak Bahagia",
+                preview: "Ada hari-hari ketika semuanya terasa terlalu berat, seolah dunia menaruh terlalu banyak di pundakmu...",
+                content: "Ada hari-hari ketika semuanya terasa terlalu berat, seolah dunia menaruh terlalu banyak di pundakmu. Ketika kenangan datang tanpa diminta, dan rasa rindu itu muncul begitu saja.\n\nTidak apa-apa kalau kamu menangis. Tidak apa-apa kalau kamu merasa lelah. Kehilangan seseorang yang begitu berarti memang meninggalkan ruang kosong yang tidak mudah diisi.\n\nTapi di balik semua rasa itu, kamu tetap seseorang yang berhak merasakan kebahagiaan. Berhak tertawa lagi suatu hari nanti, berhak menemukan ketenanganmu sendiri.\n\nPelan-pelan saja. Tidak ada yang memaksamu untuk segera kuat.",
+                date: "14 Maret 2026",
+                unread: false,
+                signature: "— Kebahagiaan juga sedang mencari jalan menuju hatimu"
+            },
+            {
+                id: 2,
+                sender: "Tuhan Menyayangimu",
+                preview: "Kadang hidup terasa tidak adil, terutama ketika seseorang yang kita cintai diambil begitu saja...",
+                content: "Kadang hidup terasa tidak adil, terutama ketika seseorang yang kita cintai diambil begitu saja. Rasanya seperti doa tidak didengar dan dunia berjalan terlalu keras.\n\nTapi ada satu hal yang sering kita lupa: bahkan ketika kita merasa jauh dari Tuhan, Dia tidak pernah benar-benar jauh dari kita.\n\nSelama nama-Nya masih ada di hatimu, selama masih ada orang yang mengingatkanmu tentang-Nya, itu berarti kamu tidak pernah benar-benar ditinggalkan.\n\nMungkin sekarang semuanya masih terasa berat, tapi percayalah—Tuhan tidak meninggalkanmu berjalan sendirian di jalan ini.",
+                date: "14 Maret 2026",
+                unread: false,
+                signature: "— Dia tidak pernah pergi sejauh yang kamu kira"
+            },
+            {
+                id: 3,
+                sender: "Ayahmu Akan Bangga Padamu",
+                preview: "Rasa rindu kepada seorang ayah adalah sesuatu yang tidak bisa dijelaskan dengan kata-kata...",
+                content: "Rasa rindu kepada seorang ayah adalah sesuatu yang tidak mudah dijelaskan dengan kata-kata. Kadang yang tersisa hanya keinginan sederhana: ingin bertemu lagi, ingin berbicara lagi, atau hanya ingin melihatnya sekali lagi.\n\nTapi coba bayangkan sesuatu yang lain. Bahwa setiap hari ketika kamu tetap berusaha bertahan, setiap langkah kecil yang kamu ambil untuk terus hidup—itu semua mungkin membuatnya bangga.\n\nBukan karena kamu selalu kuat, tapi karena kamu tetap mencoba berdiri bahkan ketika rasanya ingin menyerah.\n\nCinta seorang ayah tidak berhenti hanya karena dunia berubah.",
+                date: "14 Maret 2026",
+                unread: false,
+                signature: "— Seseorang yang selalu ingin melihatmu baik-baik saja"
+            },
+            {
+                id: 4,
+                sender: "Kamu Tidak Sendirian",
+                preview: "Ada saat-saat ketika dunia terasa sunyi, dan semua pikiran terasa terlalu penuh...",
+                content: "Ada saat-saat ketika dunia terasa sunyi, dan semua pikiran terasa terlalu penuh. Ketika rumah terasa berbeda, dan kenangan datang tanpa permisi.\n\nDi saat seperti itu, sangat mudah merasa sendirian.\n\nTapi sebenarnya tidak sepenuhnya begitu. Masih ada orang yang peduli. Masih ada seseorang yang mau mendengarkan, bahkan jika mereka tidak selalu tahu harus berkata apa.\n\nKadang yang paling penting bukanlah jawaban, tapi keberadaan seseorang yang tetap tinggal ketika kita sedang rapuh.\n\nDan jika suatu hari semuanya terasa terlalu berat, ingatlah satu hal kecil ini: kamu tidak benar-benar berjalan sendirian.",
+                date: "14 Maret 2026",
+                unread: false,
+                signature: "— Selalu ada seseorang yang peduli"
+            }
+            ];
         
         // ==========================================
         // DATA GAMBAR
         // ==========================================
         const galleryImages = [
-            
+            {
+                id: 1,
+                src: "static/image/Number1.jpg",
+                thumb: "static/image/Number1.jpg",
+                title: "Senja di Pegunungan",
+                caption: "Senja yang tenang di pegunungan",
+                desc: "Cahaya senja yang memeluk puncak-puncak gunung, mengingatkan kita bahwa setiap hari yang berakhir adalah awal dari harapan baru.",
+                date: "14 Maret 2026"
+            },
+            {
+                id: 2,
+                src: "static/image/Number2.jpg",
+                thumb: "static/image/Number2.jpg",
+                title: "Hutan Pinus",
+                caption: "Hutan pinus yang sejuk",
+                desc: "Deretan pinus yang berdiri tegak, seperti penjaga diam yang menyaksikan segala cerita yang terbisikkan di antara dedaunan.",
+                date: "14 Maret 2026"
+            },
+            {
+                id: 3,
+                src: "static/image/Number3.jpg",
+                thumb: "static/image/Number3.jpg",
+                title: "Kabut Pagi",
+                caption: "Kabut pagi di lembah",
+                desc: "Kabut yang menyelimuti lembah, membawa misteri dan keheningan. Kadang yang tidak terlihat jelas justru memberi ketenangan.",
+                date: "14 Maret 2026"
+            },
+            {
+                id: 4,
+                src: "static/image/Number4.jpg",
+                thumb: "static/image/Number4.jpg",
+                title: "Daun Musim Gugur",
+                caption: "Dedauan yang berjatuhan",
+                desc: "Daun-daun yang gugur bukan berarti mati, tapi mengajarkan kita tentang melepaskan untuk tumbuh kembali di waktu yang tepat.",
+                date: "14 Maret 2026"
+            },
+            {
+                id: 5,
+                src: "static/image/Number5.jpg",
+                thumb: "static/image/Number5.jpg",
+                title: "Cermin Danau",
+                caption: "Danau yang memantulkan langit",
+                desc: "Air yang tenang mencerminkan langit dengan sempurna. Hati yang damai pun bisa melihat keindahan yang tersembunyi.",
+                date: "14 Maret 2026"
+            },
+            {
+                id: 6,
+                src: "static/image/Number6.jpg",
+                thumb: "static/image/Number6.jpg",
+                title: "Jalan Setapak",
+                caption: "Jalan setapak di alam liar",
+                desc: "Setiap langkah di jalan yang tidak pasti adalah keberanian. Tidak perlu tahu ujungnya, cukup percaya pada setiap langkah kecil.",
+                date: "14 Maret 2026"
+            }
         ];
         
         // ==========================================
@@ -1496,42 +1608,89 @@
         }
         
         // ==========================================
-        // GALLERY FUNCTIONS
+        // GALLERY FUNCTIONS - MESSAGE STYLE
         // ==========================================
         
-        // Render Gallery
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
+        // Render Gallery List in Section
+        function renderGalleryList() {
+            const listContainer = document.getElementById('galleryList');
             
-            grid.innerHTML = galleryImages.map(img => `
-                <div class="gallery-item" onclick="openLightbox(${img.id})">
-                    <img src="${img.src}" alt="${img.caption}" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">${img.caption}</div>
+            listContainer.innerHTML = galleryImages.map(img => `
+                <div class="gallery-message-item" onclick="openGalleryModalAndShowDetail(${img.id})">
+                    <img class="gallery-thumb" src="${img.thumb}" alt="${img.title}" loading="lazy">
+                    <div class="gallery-info">
+                        <div class="gallery-title">${img.title}</div>
+                        <div class="gallery-preview">${img.caption}</div>
                     </div>
+                    <div class="gallery-arrow">→</div>
                 </div>
             `).join('');
         }
         
-        // Open Lightbox
-        function openLightbox(id) {
-            const image = galleryImages.find(img => img.id === id);
-            if (!image) return;
+        // Render Gallery List in Modal
+        function renderGalleryListModal() {
+            const listContainer = document.getElementById('galleryListModal');
             
-            document.getElementById('lightboxImg').src = image.src;
-            document.getElementById('lightboxCaption').textContent = image.caption;
-            document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
+            listContainer.innerHTML = galleryImages.map(img => `
+                <div class="message-item" onclick="openGalleryDetail(${img.id})">
+                    <div class="message-sender">
+                        🖼️ ${img.title}
+                    </div>
+                    <div class="message-preview">${img.caption}</div>
+                    <div class="message-date">${img.date}</div>
+                </div>
+            `).join('');
         }
         
-        // Close Lightbox
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+        // Open Gallery Modal and show detail directly
+        function openGalleryModalAndShowDetail(id) {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderGalleryListModal();
+            openGalleryDetail(id);
+        }
+        
+        // Open Gallery Modal (list view)
+        function openGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderGalleryListModal();
+        }
+        
+        // Close Gallery Modal
+        function closeGalleryModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
             document.body.style.overflow = '';
             
             setTimeout(() => {
-                document.getElementById('lightboxImg').src = '';
-            }, 400);
+                showGalleryList();
+            }, 300);
+        }
+        
+        // Open Gallery Detail
+        function openGalleryDetail(id) {
+            const image = galleryImages.find(img => img.id === id);
+            if (!image) return;
+            
+            document.getElementById('galleryDetailTitle').textContent = image.title;
+            document.getElementById('galleryDetailDate').textContent = image.date;
+            document.getElementById('galleryDetailImg').src = image.src;
+            document.getElementById('galleryDetailCaption').textContent = image.caption;
+            document.getElementById('galleryDetailDesc').textContent = image.desc;
+            
+            document.getElementById('galleryListModal').style.display = 'none';
+            document.getElementById('galleryDetail').classList.add('active');
+        }
+        
+        // Show Gallery List (Back from detail)
+        function showGalleryList() {
+            document.getElementById('galleryDetail').classList.remove('active');
+            document.getElementById('galleryListModal').style.display = 'block';
         }
         
         // ==========================================
@@ -1540,7 +1699,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeMessageModal();
-                closeLightbox();
+                closeGalleryModal();
             }
         });
         
@@ -1548,7 +1707,7 @@
         // INITIALIZE
         // ==========================================
         window.addEventListener('load', () => {
-            renderGallery();
+            renderGalleryList();
         });
     </script>
 </body>
